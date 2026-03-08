@@ -6,6 +6,15 @@ export default function loadCSV() {
             skipEmptyLines: true,
             complete: function(results) { // a opção de configuração "complete" serve para dizer que o processamento dentro da função (o que se segue a "complete") vai ser feito com todos os dados
                 results.data = update_imc_weight(results.data);
+                results.data = update_imc_weight(results.data);
+
+                const limite = new Date("2026-02-25T12:00:00");
+
+                results.data = results.data.filter(row => { // elimina as rows que não têm valores nos weights, que estão antes do dia 25 de fev às 12h00
+                    const dataSubmissao = new Date(row["Submitted at"].replace(" ", "T"));
+                    return dataSubmissao >= limite;
+                });
+
                 resolve(results); // devolve results atualizado
             },
 
@@ -40,7 +49,8 @@ export default function loadCSV() {
 function update_imc_weight(data) {
   data.forEach(row => {
     // parseFloat para garantir que o imc é número
-    const imc = parseFloat(row["imc"]);
+    let imc = parseFloat(row["imc"]);
+    if (imc > 10000) { imc = imc / 10000 } // erro no cálculo (pessoa colocou a altura em metros)
     row["weight3_imc"] = calculate_imc_weight(imc);
   });
   return data;
@@ -57,4 +67,3 @@ function calculate_imc_weight(imc) {
   
   return 0;
 }
-

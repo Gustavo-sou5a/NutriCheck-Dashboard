@@ -1,6 +1,6 @@
-export function createAgeChart(data) {
+export default function createAgeChart(data) {
 
-    console.log(data);
+    //console.log(data);
 
     // Extrair idades
     const ages = data
@@ -65,60 +65,4 @@ function createChart(labels, data) {
             }
         }
     });
-}
-
-export function createGaugeChart(data) {
-
-  const ctx = document.getElementById("gaugeChart");
-
-  const value = 65;
-
-  new Chart(ctx, {
-    type: "doughnut",
-    data: {
-      datasets: [{
-        data: [30, 40, 30],
-        backgroundColor: [
-          "red",
-          "yellow",
-          "green"
-        ],
-        circumference: 180,
-        rotation: 270
-      }]
-    },
-    options: {
-      plugins: {
-        tooltip: { enabled: false }
-      }
-    }
-  });
-
-}
-
-export function createRadarChart(data) {
-
-  const ctx = document.getElementById("radarChart");
-
-  const values = [70, 60, 80, 55, 90]; // exemplo
-
-  new Chart(ctx, {
-    type: "radar",
-    data: {
-      labels: ["Saúde", "Energia", "Sono", "Atividade", "Nutrição"],
-      datasets: [{
-        label: "Perfil",
-        data: values,
-        fill: true
-      }]
-    },
-    options: {
-      scales: {
-        r: {
-          min: 0,
-          max: 100
-        }
-      }
-    }
-  });
 }
