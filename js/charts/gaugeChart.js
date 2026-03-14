@@ -1,11 +1,12 @@
+import { dicWeightScore } from "../data.js";
+
 export default function createGaugeChart(data) {
 
-  const overallAverage = finalWeightAverage(data);
-  const gaugeValue = Math.min((overallAverage * 100) / 11.82, 100);
+  const overallAverage = final_weight_average(data);
+  const gaugeValue = (overallAverage * 100) / dicWeightScore.total_weight;
 
   const ctx = document.getElementById("gaugeChart").getContext("2d");
 
-  const NUM_SEGMENTS = 50;
   const zones = [34, 23, 43];
   const backgroundColor = ["#66BB6A", "#FFCA28", "#EF5350"];
 
@@ -146,21 +147,7 @@ export default function createGaugeChart(data) {
   });
 }
 
-function finalWeightAverage(data) {
-  let sums = 0;
-
-  for (let i = 0; i < data.length; i++) {
-    let soma = 0;
-    let submission = data[i];
-
-    for (let chave in submission) {
-      if (chave.includes("weight")) {
-        soma += parseFloat(submission[chave]) || 0;
-      }
-    }
-    console.log(submission["Submission ID"], soma);
-    sums += soma;
-  }
-  console.log(sums / data.length);
-  return sums / data.length;
+function final_weight_average(data) {
+  const sum = data.reduce((acc, row) => acc + (row.total_weight || 0), 0);
+  return sum / data.length;
 }

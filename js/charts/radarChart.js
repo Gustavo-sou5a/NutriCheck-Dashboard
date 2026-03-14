@@ -1,15 +1,27 @@
+import { dicWeightScore, sections } from "../data.js";
+
+const AT_RISK_SCORE = 57;
+
 export default function createRadarChart(data) {
+
+  const riskPercentage = risk_factor_percentage(data);
+  const riskDiv = document.getElementById("riskFactor");
+  riskDiv.innerText = `Em risco: ${riskPercentage.toFixed(2)}%`;
+
 
   const ctx = document.getElementById("radarChart");
 
-  const values = [70, 60, 80, 55, 90]; // exemplo
+  const labels = ["Fatores MetS", "História Médica", "Atividade Física e Sono", "Hábitos Alimentares", "Estilo de Vida"]
+  const values = Object.keys(sections).map(section => 
+    average_percentege_per_section(data, `${section}_percentage`)
+  );
 
   new Chart(ctx, {
     type: "radar",
     data: {
-      labels: ["Saúde", "Energia", "Sono", "Atividade", "Nutrição"],
+      labels: labels,
       datasets: [{
-        label: "Perfil",
+        label: "% Média de Risco Para Cada Eixo",
         data: values,
         fill: true
       }]
@@ -18,9 +30,32 @@ export default function createRadarChart(data) {
       scales: {
         r: {
           min: 0,
-          max: 100
+          max: 100,
+          pointLabels: {
+            font: {
+              size: 20  // aumenta o tamanho da fonte das labels
+            }
+          }
         }
       }
     }
   });
+}
+
+function average_percentege_per_section(data, section) {
+  const sum = data.reduce((acc, row) => acc + (row[section] || 0), 0);
+  return sum / data.length;
+}
+  
+function risk_factor_percentage(data) {
+  let peopleAtRisk = 0;
+  data.forEach(row => {
+    let score = row.total_weight_except_age_imc / dicWeightScore.total_weight_except_age_imc * 100;
+    console.log("score: " + score);
+    if (score >= AT_RISK_SCORE) {
+      peopleAtRisk++;
+    }
+  });
+  console.log(peopleAtRisk/data.length * 100);
+  return peopleAtRisk/data.length * 100;
 }

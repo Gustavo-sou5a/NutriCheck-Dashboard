@@ -103,20 +103,12 @@ function countRiskFactors(submission) {
   let count = 0;
 
   for (let chave in submission) {
-    if (chave.includes("weight")) {
+    if (chave.startsWith("weight") && chave !== "weight1_age" && chave !== "weight3_imc") {
       const val = parseFloat(submission[chave]) || 0;
-
       if (val > 0) {
         count++;
-        console.log(submission["Submitted at"]);
-        console.log(chave);
       }
     }
-  }
-
-  if (count >= 8) {
-    console.log(submission["Submitted at"]);
-    console.log(count);
   }
   return count;
 }

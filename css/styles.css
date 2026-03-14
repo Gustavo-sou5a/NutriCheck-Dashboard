@@ -23,3 +23,19 @@ canvas {
     width: 100% !important;
     height: 500px !important;
 }
+
+#riskFactor {
+    text-align: center;          /* Centraliza o texto horizontalmente */
+    font-size: 20px;             /* Tamanho da fonte maior */
+    font-weight: bold;           /* Deixa em negrito */
+    color: #ff4c4c;              /* Cor chamativa (vermelho suave) */
+    margin: 20px 0;              /* Espaço acima e abaixo */
+    padding: 10px 20px;          /* Espaço interno da div */
+    border: 2px solid #ff4c4c;  /* Borda arredondada */
+    border-radius: 10px;         /* Bordas arredondadas */
+    background-color: #ffe5e5;   /* Fundo suave */
+    width: fit-content;          /* Largura do conteúdo */
+    margin-left: auto;           /* Centraliza horizontalmente */
+    margin-right: auto;          /* Centraliza horizontalmente */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra suave */
+}
