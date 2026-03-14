@@ -141,7 +141,7 @@ const dicSectionsScore = {
   section_fatores_metS: dicWeightScore.weight2_gender + dicWeightScore.weight4_waist + dicWeightScore.weight5_meds,
   section_historial_medico: dicWeightScore.weight6_diabetes + dicWeightScore.weight7_pregnant,
   section_ativ_sono: dicWeightScore.weight8_1_walk + dicWeightScore.weight8_2_sitting + dicWeightScore.weight9_sleep,
-  section_alimentacao: dicWeightScore.weight10_refri + dicWeightScore.weight11_upf + dicWeightScore.weight12_fruits + dicWeightScore.weight14_smoke,
+  section_alimentacao: dicWeightScore.weight10_refri + dicWeightScore.weight11_upf + dicWeightScore.weight12_fruits + dicWeightScore.weight13_alcool,
   section_lifestyle: dicWeightScore.weight14_smoke + dicWeightScore.weight15_schedule
 }
 
