@@ -134,10 +134,8 @@ dicWeightScore.total_weight =
   Object.values(dicWeightScore)
     .reduce((a, b) => a + b, 0);
 
-dicWeightScore.total_weight_except_age_imc =
-  Object.entries(dicWeightScore)
-    .filter(([key]) => key !== "weight1_age" && key !== "weight3_imc")
-    .reduce((a, [, val]) => a + val, 0);
+dicWeightScore.total_weight_except_age_imc = 
+  dicWeightScore.total_weight - dicWeightScore.weight1_age - dicWeightScore.weight3_imc;
 
 const dicSectionsScore = {
   section_fatores_metS: dicWeightScore.weight2_gender + dicWeightScore.weight4_waist + dicWeightScore.weight5_meds,

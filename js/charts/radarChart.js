@@ -51,11 +51,8 @@ function risk_factor_percentage(data) {
   let peopleAtRisk = 0;
   data.forEach(row => {
     let score = row.total_weight_except_age_imc / dicWeightScore.total_weight_except_age_imc * 100;
-    console.log("score: " + score);
-    if (score >= AT_RISK_SCORE) {
+    if (score >= AT_RISK_SCORE)
       peopleAtRisk++;
-    }
   });
-  console.log(peopleAtRisk/data.length * 100);
   return peopleAtRisk/data.length * 100;
 }

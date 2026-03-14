@@ -109,6 +109,9 @@ function countRiskFactors(submission) {
         count++;
       }
     }
+    if (count >= 8) {
+      console.log(submission["Submitted at"])
+    }
   }
   return count;
 }
